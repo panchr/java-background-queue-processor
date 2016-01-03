@@ -17,4 +17,4 @@ compile:
 
 test:
 	$(COMPILE_CMD)
-	java -esa $(CMP_DIR)/TestBackgroundQueueProcessor
+	java -esa -cp $(CMP_DIR) TestBackgroundQueueProcessor

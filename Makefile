@@ -7,6 +7,10 @@ SRC_DIR=src
 # Output directory of compiled code
 CMP_DIR=build
 
+# Documentation directory
+DOCS_DIR=docs
+JAVA_API="http://docs.oracle.com/javase/8/docs/api/"
+
 # Internal parameters
 COMPILE_FLAGS=-sourcepath $(SRC_DIR) -d $(CMP_DIR) -s $(CMP_DIR) \
 	-h $(CMP_DIR)
@@ -18,3 +22,6 @@ compile:
 test:
 	$(COMPILE_CMD)
 	java -esa -cp $(CMP_DIR) TestBackgroundQueueProcessor
+
+javadoc:
+	javadoc -d ${DOCS_DIR} -linkoffline $(JAVA_API) $(JAVA_API)  $(SRC_DIR)/*.java

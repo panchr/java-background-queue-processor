@@ -23,7 +23,7 @@ public abstract class BackgroundQueueProcessor<Data, Output> extends ConcurrentL
 	/**
 	* Creates a new {@link BackgroundQueueProcessor} with a given amount
 	* of time to process all of the data on the queue.
-	* @param interval to process data in (seconds). An interval of 5s,
+	* @param interval time process data in (seconds). An interval of 5s,
 	* for example, processes all of the data available every 5 seconds.
 	*/
 	public BackgroundQueueProcessor(double interval) {
@@ -80,6 +80,7 @@ public abstract class BackgroundQueueProcessor<Data, Output> extends ConcurrentL
 			}
 		this.clear();
 		this.scheduler.cancel();
+		this.scheduler = null;
 		}
 
 	/**
@@ -104,7 +105,7 @@ public abstract class BackgroundQueueProcessor<Data, Output> extends ConcurrentL
 	* Gets all of the current output as an iterable of {@link Output}s. This is
 	* another {@link ConcurrentLinkedQueue}.
 	* Note: not guaranteed to contain all of the output so far because it is only
-	* weakly-consistent: {@link https://docs.oracle.com/javase/8/docs/api/java/util/concurrent/ConcurrentLinkedQueue.html#iterator--}.
+	* <a href="https://docs.oracle.com/javase/8/docs/api/java/util/concurrent/ConcurrentLinkedQueue.html#iterator--">weakly-consistent</a>.
 	* @return iterator over the current output
 	*/
 	public Iterator<Output> outputStream() {

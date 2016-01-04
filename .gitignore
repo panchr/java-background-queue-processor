@@ -1,5 +1,9 @@
-
+# Rushy Panchal
 # Created by https://www.gitignore.io/api/java,sublimetext
+
+### Custom ###
+docs/
+build/
 
 ### Java ###
 *.class

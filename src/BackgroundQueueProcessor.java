@@ -113,7 +113,7 @@ public abstract class BackgroundQueueProcessor<Data, Output> extends ConcurrentL
 		}
 
 	/**
-	* Gets a pointer to the {@link ConcurrentLinkedQueue} for output from
+	* Gets a reference to the {@link ConcurrentLinkedQueue} for output from
 	* the queued data.
 	* @return {@link ConcurrentLinkedQueue} of output
 	*/

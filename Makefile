@@ -16,7 +16,6 @@ DOCS_BRANCH=gh-pages
 COMPILE_FLAGS:=-sourcepath $(SRC_DIR) -d $(CMP_DIR) -s $(CMP_DIR) \
 	-h $(CMP_DIR)
 COMPILE_CMD:=javac $(COMPILE_FLAGS) $(SRC_DIR)/*.java
-CURRENT_GIT_BRANCH:=$(shell echo `git symbolic-ref --short HEAD`)
 
 compile:
 	$(COMPILE_CMD)
@@ -27,8 +26,6 @@ test:
 
 javadoc:
 	javadoc -d ${DOCS_DIR} -linkoffline $(JAVA_API) $(JAVA_API)  $(SRC_DIR)/*.java
-	git checkout $(DOCS_BRANCH)
-	git merge $(CURRENT_GIT_BRANCH)
-	git add docs
-	git commit -m "Automatically update Javadoc documentation"
-	git checkout $(CURRENT_GIT_BRANCH)
+	git add $(DOCS_DIR)
+	git commit -m "Update documentation"
+	git subtree push --prefix $(DOCS_DIR) origin $(DOCS_BRANCH)

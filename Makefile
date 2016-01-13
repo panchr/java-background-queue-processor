@@ -17,10 +17,14 @@ COMPILE_FLAGS:=-sourcepath $(SRC_DIR) -d $(CMP_DIR) -s $(CMP_DIR) \
 	-h $(CMP_DIR)
 COMPILE_CMD:=javac $(COMPILE_FLAGS) $(SRC_DIR)/*.java
 
+MAKE_BUILD_DIR:=if [ ! -d build ]; then mkdir build; fi
+
 compile:
+	$(MAKE_BUILD_DIR)
 	$(COMPILE_CMD)
 
 test:
+	$(MAKE_BUILD_DIR)
 	$(COMPILE_CMD)
 	java -esa -cp $(CMP_DIR) TestBackgroundQueueProcessor
 
